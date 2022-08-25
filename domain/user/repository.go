@@ -6,17 +6,17 @@ import (
 )
 
 //Repository结构体
-type Respository struct {
+type Repository struct {
 	db *gorm.DB
 }
 
 //实例化
-func NewUserRepository(db *gorm.DB) *Respository {
-	return &Respository{db: db}
+func NewUserRepository(db *gorm.DB) *Repository {
+	return &Repository{db: db}
 }
 
 //生成表
-func (r *Respository) Migration() {
+func (r *Repository) Migration() {
 	err := r.db.AutoMigrate(&User{})
 	if err != nil {
 		log.Print(err)
@@ -24,14 +24,14 @@ func (r *Respository) Migration() {
 }
 
 //创建用户
-func (r *Respository) Create(u *User) error {
+func (r *Repository) Create(u *User) error {
 	result := r.db.Create(u)
 
 	return result.Error
 }
 
 //根据用户名查询用户
-func (r *Respository) GetByName(name string) (User, error) {
+func (r *Repository) GetByName(name string) (User, error) {
 	var user User
 	err := r.db.Where("UserName = ?", name).Where("IsDeleted = ?", 0).First(&user, "UserName = ?", name).Error
 	if err != nil {
@@ -41,7 +41,7 @@ func (r *Respository) GetByName(name string) (User, error) {
 }
 
 //添加测试数据
-func (r *Respository) InsertSampleData() {
+func (r *Repository) InsertSampleData() {
 	user := NewUser("admin", "admin", "admin")
 	user.IsAdmin = true
 	r.db.Where(User{Username: user.Username}).Attrs(
@@ -55,6 +55,6 @@ func (r *Respository) InsertSampleData() {
 }
 
 //更新用户
-func (r *Respository) Update(u *User) error {
+func (r *Repository) Update(u *User) error {
 	return r.db.Save(&u).Error
 }
