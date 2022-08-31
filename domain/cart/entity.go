@@ -27,7 +27,7 @@ type Item struct {
 	Cart      Cart `gorm:"foreignKey:CartID" json:"-"`
 }
 
-func NewItem(productId uint, cartID uint, count int) *Item {
+func NewCartItem(productId uint, cartID uint, count int) *Item {
 	return &Item{
 		ProductID: productId,
 		CartID:    cartID,
