@@ -1,4 +1,4 @@
-package card
+package cart
 
 import "gorm.io/gorm"
 

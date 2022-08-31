@@ -1,4 +1,4 @@
-package card
+package cart
 
 import (
 	"gorm.io/gorm"
@@ -12,7 +12,7 @@ type Cart struct {
 	User   user.User `gorm:"foreignKey:ID;references:UserID"`
 }
 
-func NewCard(uid uint) *Cart {
+func NewCart(uid uint) *Cart {
 	return &Cart{
 		UserID: uid,
 	}
