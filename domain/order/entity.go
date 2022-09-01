@@ -12,7 +12,7 @@ type Order struct {
 	User         user.User     `gorm:"foreignKey:ID;references:UserID" json:"-"`
 	OrderedItems []OrderedItem `gorm:"foreignKey:OrderID"`
 	TotalPrice   float32
-	IsCanceled   bool
+	IsCanceled   bool //是否退单
 }
 
 type OrderedItem struct {
@@ -21,7 +21,7 @@ type OrderedItem struct {
 	ProductID  uint
 	Count      int
 	OrderID    uint
-	IsCanceled bool
+	IsCanceled bool //是否退单
 }
 
 func NewOrder(uid uint, items []OrderedItem) *Order {
