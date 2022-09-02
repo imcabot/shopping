@@ -1,0 +1,11 @@
+Env: "dev"
+
+DatabaseSettings:
+  DatabaseURI:"root:abc123ab@tcp(127.0.0.1:3306)/go_database?parseTime=true&loc=Local"
+  DatabaseName:"go_database"
+  Username:"root"
+  Password:"abc123ab"
+  
+  
+  JwtSettings"
+  SecretKey:"asdfgh"
