@@ -1,6 +1,7 @@
 package pagination
 
 import (
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 )
@@ -55,6 +56,13 @@ func New(page, pageSize, total int) *Pages {
 func NewFromRequest(req *http.Request, count int) *Pages {
 	page := ParseInt(req.URL.Query().Get(PageVar), 1)
 	pageSize := ParseInt(req.URL.Query().Get(PageSizeVar), DefaultPageSize)
+	return New(page, pageSize, count)
+}
+
+// 根据gin请求实例化分页结构体
+func NewFromGinRequest(g *gin.Context, count int) *Pages {
+	page := ParseInt(g.Query(PageVar), 1)
+	pageSize := ParseInt(g.Query(PageSizeVar), DefaultPageSize)
 	return New(page, pageSize, count)
 }
 

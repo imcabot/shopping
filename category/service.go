@@ -17,7 +17,7 @@ type Service struct {
 //}
 
 //实例化商品分类service
-func NewCategoryservice(r Repository) *Service {
+func NewCategoryService(r Repository) *Service {
 	//生成表
 	r.Migration()
 	//插入测试数据
@@ -58,7 +58,7 @@ func (s *Service) BulkCreate(fileHeader *multipart.FileHeader) (int, error) {
 }
 
 //获得分页商品分类
-func (s *Service) Get(page *pagination.Pages) *pagination.Pages {
+func (s *Service) GetAll(page *pagination.Pages) *pagination.Pages {
 	categories, count := s.r.GetAll(page.Page, page.PageSize)
 	page.Items = categories
 	page.TotalCount = count

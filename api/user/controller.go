@@ -36,6 +36,7 @@ func (c *Controller) CreateUser(g *gin.Context) {
 	err := c.userService.Create(newUser)
 	if err != nil {
 		api_helper.HandleError(g, err)
+		return
 	}
 	g.JSON(
 		http.StatusCreated, CreatUserResponse{
