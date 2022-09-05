@@ -9,15 +9,11 @@ type Repository struct {
 	db *gorm.DB
 }
 
-//type Dd interface {
-//	Migration()
-//	Update(updateProduct Product) error
-//	SearchByString(str string, pageIndex, pageSize int) ([]Product, int)
-//	FindBySku(sku string) (*Product, error)
-//	Create(p *Product) error
-//	GetAll(pageIndex, pageSize int) ([]Product, int)
-//	Delete(sku string) error
-//}
+func NewProductRepository(db *gorm.DB) *Repository {
+	return &Repository{
+		db: db,
+	}
+}
 
 func (r *Repository) Migration() {
 	err := r.db.AutoMigrate(&Product{})

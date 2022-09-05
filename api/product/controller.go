@@ -45,3 +45,39 @@ func (c *Controller) CreateProduct(g *gin.Context) {
 	})
 
 }
+
+func (c *Controller) DeleteProduct(g *gin.Context) {
+	var req DeleteProductRequest
+	err := g.ShouldBind(&req)
+	if err != nil {
+		api_helper.HandleError(g, err)
+		return
+	}
+	err = c.productService.DeleteProduct(req.SKU)
+	if err != nil {
+		api_helper.HandleError(g, err)
+		return
+	}
+	g.JSON(http.StatusOK, api_helper.Response{
+		Message: "Product Deleted",
+	})
+
+}
+
+func (c *Controller) UpdateProduct(g *gin.Context) {
+	var req UpdateProductRequest
+	err := g.ShouldBind(&req)
+	if err != nil {
+		api_helper.HandleError(g, err)
+		return
+	}
+	err = c.productService.UpdateProduct(req.ToProduct())
+	if err != nil {
+		api_helper.HandleError(g, err)
+		return
+	}
+	g.JSON(http.StatusOK, api_helper.Response{
+		Message: "Product Updated",
+	})
+
+}

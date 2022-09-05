@@ -6,10 +6,10 @@ import (
 )
 
 type Repository struct {
-	db gorm.DB
+	db *gorm.DB
 }
 
-func NewOrderRepository(db gorm.DB) *Repository {
+func NewOrderRepository(db *gorm.DB) *Repository {
 	return &Repository{
 		db: db,
 	}
