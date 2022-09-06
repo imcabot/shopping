@@ -47,7 +47,8 @@ func GetAllConfigValues(configFile string) (configuration *ConfigUration, err er
 //实例化configReader
 func newConfigReader(configFile string) {
 	v := viper.GetViper()
-	v.SetConfigType("yaml")
+
+	//v.SetConfigType("yaml")
 	v.SetConfigFile(configFile)
 	cfgReader = &configReader{
 		configFile: configFile,
