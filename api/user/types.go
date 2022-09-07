@@ -1,14 +1,14 @@
 package user
 
 //创建用户请求结构体
-type CreatUserRequest struct {
+type CreateUserRequest struct {
 	Username  string `json:"username"`
 	password  string `json:"password"`
 	password2 string `json:"password2"`
 }
 
 //创建用户响应
-type CreatUserResponse struct {
+type CreateUserResponse struct {
 	Username string `json:"username"`
 }
 

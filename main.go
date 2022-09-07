@@ -8,10 +8,19 @@ import (
 	"log"
 	"net/http"
 	"shoping/api"
+	_ "shoping/docs"
 	"shoping/utils/graceful"
 	"time"
 )
 
+// @title 电商项目
+// @description 电商项目
+// @version 1.0
+// @contact.name golang技术栈
+// @contact.url https://www.golang-tech-stack.com
+
+// @host localhost:8080
+// @BasePath /
 func main() {
 	r := gin.Default()
 	registerMiddlers(r)

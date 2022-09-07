@@ -25,8 +25,17 @@ func NewUserController(service *user.Service, appConfig *config.ConfigUration) *
 	}
 }
 
+// CreateUser godoc
+// @Summary 根据给定的用户名和密码创建用户
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param CreateUserRequest body CreateUserRequest true "user information"
+// @Success 201 {object} CreateUserResponse
+// @Failure 400  {object} api_helper.ErrorResponse
+// @Router /user [post]
 func (c *Controller) CreateUser(g *gin.Context) {
-	var req CreatUserRequest
+	var req CreateUserRequest
 	if err := g.ShouldBind(&req); err != nil {
 		api_helper.HandleError(g, api_helper.ErrInvalidBody)
 		return
@@ -39,11 +48,20 @@ func (c *Controller) CreateUser(g *gin.Context) {
 		return
 	}
 	g.JSON(
-		http.StatusCreated, CreatUserResponse{
+		http.StatusCreated, CreateUserResponse{
 			Username: req.Username,
 		})
 }
 
+// Login godoc
+// @Summary 根据用户名和密码登录
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param LoginRequest body LoginRequest true "user information"
+// @Success 200 {object} LoginResponse
+// @Failure 400  {object} api_helper.ErrorResponse
+// @Router /user/login [post]
 func (c *Controller) Login(g *gin.Context) {
 	var req LoginRequest
 	err := g.ShouldBind(&req)

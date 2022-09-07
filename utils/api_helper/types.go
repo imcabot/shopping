@@ -6,7 +6,7 @@ type Response struct {
 	Message string `json:"message"`
 }
 
-type ErrResponse struct {
+type ErrorResponse struct {
 	Message string `json:"errorMessage"`
 }
 
