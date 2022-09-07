@@ -2,7 +2,7 @@ package product
 
 import (
 	"gorm.io/gorm"
-	"shoping/category"
+	"shopping/category"
 )
 
 //商品结构体

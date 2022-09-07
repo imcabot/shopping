@@ -1,7 +1,7 @@
 package product
 
 import (
-	"shoping/utils/pagination"
+	"shopping/utils/pagination"
 )
 
 type Service struct {

@@ -3,9 +3,9 @@ package order
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"shoping/domain/order"
-	"shoping/utils/api_helper"
-	"shoping/utils/pagination"
+	"shopping/domain/order"
+	"shopping/utils/api_helper"
+	"shopping/utils/pagination"
 )
 
 type Controller struct {

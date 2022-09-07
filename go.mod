@@ -1,4 +1,4 @@
-module shoping
+module shopping
 
 go 1.18
 

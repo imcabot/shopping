@@ -2,8 +2,8 @@ package order
 
 import (
 	"gorm.io/gorm"
-	"shoping/domain/product"
-	"shoping/domain/user"
+	"shopping/domain/product"
+	"shopping/domain/user"
 )
 
 type Order struct {

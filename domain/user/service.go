@@ -1,6 +1,6 @@
 package user
 
-import "shoping/utils/hash"
+import "shopping/utils/hash"
 
 //用户service结构体
 type Service struct {

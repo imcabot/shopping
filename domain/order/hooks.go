@@ -2,8 +2,8 @@ package order
 
 import (
 	"gorm.io/gorm"
-	"shoping/domain/cart"
-	"shoping/domain/product"
+	"shopping/domain/cart"
+	"shopping/domain/product"
 )
 
 //创建之前，查找购物车并删除

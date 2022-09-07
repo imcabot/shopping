@@ -2,7 +2,7 @@ package user
 
 import (
 	"gorm.io/gorm"
-	"shoping/utils/hash"
+	"shopping/utils/hash"
 )
 
 //保存用户之前回调，如果密码没有被加密加密密码和salt

@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	jwtHelper "shoping/utils/jwt"
+	jwtHelper "shopping/utils/jwt"
 )
 
 //管理员授权

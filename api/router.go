@@ -3,19 +3,19 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"log"
-	cartApi "shoping/api/cart"
-	categoryApi "shoping/api/category"
-	orderApi "shoping/api/order"
-	productApi "shoping/api/product"
-	userApi "shoping/api/user"
-	"shoping/category"
-	"shoping/config"
-	"shoping/domain/cart"
-	"shoping/domain/order"
-	"shoping/domain/product"
-	"shoping/domain/user"
-	"shoping/utils/database_handler"
-	"shoping/utils/middleware"
+	cartApi "shopping/api/cart"
+	categoryApi "shopping/api/category"
+	orderApi "shopping/api/order"
+	productApi "shopping/api/product"
+	userApi "shopping/api/user"
+	"shopping/category"
+	"shopping/config"
+	"shopping/domain/cart"
+	"shopping/domain/order"
+	"shopping/domain/product"
+	"shopping/domain/user"
+	"shopping/utils/database_handler"
+	"shopping/utils/middleware"
 )
 
 type Databases struct {
@@ -72,7 +72,7 @@ func RegisterCategoryHandlers(r *gin.Engine, dbs Databases) {
 	categoryGroup.POST(
 		"", middleware.AuthAdminMiddleware(AppConfig.JwtSettings.SecretKey), categoryController.CreateCategory)
 	categoryGroup.GET("", categoryController.GetCategories)
-	categoryGroup.POST("/upload", middleware.AuthAdminMiddleware(AppConfig.JwtSettings.SecretKey),
+	categoryGroup.POST("/upload", middleware.AuthAdminMiddleware(AppConfig.SecretKey),
 		categoryController.BulkCreateCategory)
 
 }
@@ -91,7 +91,7 @@ func RegisterUserHandlers(r *gin.Engine, dbs Databases) {
 func RegisterCartHandlers(r *gin.Engine, dbs Databases) {
 	cartService := cart.NewService(*dbs.cartRepository, *dbs.cartItemRepository, *dbs.productRepository)
 	cartController := cartApi.NewCartController(cartService)
-	cartGroup := r.Group("/cart", middleware.AuthAdminMiddleware(AppConfig.JwtSettings.SecretKey))
+	cartGroup := r.Group("/cart", middleware.AuthUserMiddleware(AppConfig.SecretKey))
 	cartGroup.POST("/item", cartController.AddItem)
 	cartGroup.PATCH("/item", cartController.UpdateItem)
 	cartGroup.GET("/item", cartController.GetCart)
@@ -113,10 +113,10 @@ func RegisterProductHandlers(r *gin.Engine, dbs Databases) {
 func RegisterOrderHandlers(r *gin.Engine, dbs Databases) {
 	orderService := order.NewService(*dbs.orderRepository, *dbs.orderItemRepository,
 		*dbs.productRepository, *dbs.cartRepository, *dbs.cartItemRepository)
-	orderConTroller := orderApi.NewOrderController(orderService)
-	orderGroup := r.Group("/order")
-	orderGroup.POST("", orderConTroller.CompleteOrder)
-	orderGroup.DELETE("", orderConTroller.CancelOrder)
-	orderGroup.GET("", orderConTroller.GetOrders)
+	orderController := orderApi.NewOrderController(orderService)
+	orderGroup := r.Group("/order", middleware.AuthUserMiddleware(AppConfig.SecretKey))
+	orderGroup.POST("", orderController.CompleteOrder)
+	orderGroup.DELETE("", orderController.CancelOrder)
+	orderGroup.GET("", orderController.GetOrders)
 
 }

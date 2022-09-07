@@ -2,8 +2,8 @@ package category
 
 import (
 	"mime/multipart"
-	"shoping/utils/csv_helper"
-	"shoping/utils/pagination"
+	"shopping/utils/csv_helper"
+	"shopping/utils/pagination"
 )
 
 type Service struct {

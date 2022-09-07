@@ -2,7 +2,7 @@ package cart
 
 import (
 	"errors"
-	"shoping/domain/product"
+	"shopping/domain/product"
 )
 
 type Service struct {

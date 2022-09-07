@@ -2,7 +2,7 @@ package api_helper
 
 import (
 	"github.com/gin-gonic/gin"
-	"shoping/utils/pagination"
+	"shopping/utils/pagination"
 )
 
 var userIdText = "userId"

@@ -3,8 +3,8 @@ package cart
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"shoping/domain/cart"
-	"shoping/utils/api_helper"
+	"shopping/domain/cart"
+	"shopping/utils/api_helper"
 )
 
 type Controller struct {

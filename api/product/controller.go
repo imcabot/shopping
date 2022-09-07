@@ -3,9 +3,9 @@ package product
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"shoping/domain/product"
-	"shoping/utils/api_helper"
-	"shoping/utils/pagination"
+	"shopping/domain/product"
+	"shopping/utils/api_helper"
+	"shopping/utils/pagination"
 )
 
 type Controller struct {

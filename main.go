@@ -7,9 +7,9 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"log"
 	"net/http"
-	"shoping/api"
-	_ "shoping/docs"
-	"shoping/utils/graceful"
+	"shopping/api"
+	_ "shopping/docs"
+	"shopping/utils/graceful"
 	"time"
 )
 

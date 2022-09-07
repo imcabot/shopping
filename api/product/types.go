@@ -1,6 +1,6 @@
 package product
 
-import "shoping/domain/product"
+import "shopping/domain/product"
 
 type CreateProductRequest struct {
 	Name       string  `json:"name"`

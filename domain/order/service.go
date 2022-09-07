@@ -1,9 +1,9 @@
 package order
 
 import (
-	"shoping/domain/cart"
-	"shoping/domain/product"
-	"shoping/utils/pagination"
+	"shopping/domain/cart"
+	"shopping/domain/product"
+	"shopping/utils/pagination"
 	"time"
 )
 
@@ -51,8 +51,11 @@ func (s *Service) CompleteOrder(userID uint) error {
 	for _, item := range cartItems {
 		orderedItems = append(orderedItems, *NewOrderItem(item.Count, item.ProductID))
 	}
-	s.orderRepository.Create(NewOrder(userID, orderedItems))
-	return err
+	err = s.orderRepository.Create(NewOrder(userID, orderedItems))
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 //取消订单
@@ -68,9 +71,11 @@ func (s *Service) CancelOrder(uid, oid uint) error {
 		return ErrCancelDurationPassed
 	}
 	currentOrder.IsCanceled = true
-	s.orderRepository.Update(*currentOrder)
-
-	return err
+	err = s.orderRepository.Update(*currentOrder)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 //获得订单
