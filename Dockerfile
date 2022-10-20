@@ -34,4 +34,4 @@ COPY --from=builder /app/shopping /
 EXPOSE 8080
 
 # 需要运行的命令
-ENTRYPOINT ["/shopping"]
+#ENTRYPOINT ["/shopping"]

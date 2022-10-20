@@ -1,18 +1,27 @@
 version: "1.0"
 
 services:
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-
   mysql:
     image: mysql:latest
-    environment: MYSQL_ROOT_PASSWORD:root
-    expose:
-      - "3306"
+    restart: "always"
     ports:
-      - "3306:3306"
+      - 3306:3306
+    command: "--default-authentication-plugin=mysql_native_password --init-file /data/application/init.sql"
+    # 账号密码
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "go_database"
+      MYSQL_PASSWORD: "root"
+    # 文件夹以及文件映射
+    volumes:
+      - ./init.sql:/data/application/init.sql
 
-#  redis:
-#    image:latest
+  shopping_containers:
+    build: .
+    restart: "always"
+    command: ["/wait-for-it.sh","mysql:3306","--","/shopping"]
+    # 依赖启动项
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080

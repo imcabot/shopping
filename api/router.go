@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	cartApi "shopping/api/cart"
@@ -41,7 +42,10 @@ func CreatDBs() *Databases {
 	if err != nil {
 		log.Fatalf("读取配置文件失败。 %v", err.Error())
 	}
-	db := database_handler.NewMySQLDB(AppConfig.DatabaseSettings.DatabaseURI)
+	dns := fmt.Sprintf("%s:%s@tcp(%s:%v)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		AppConfig.DatabaseSettings.Username, AppConfig.DatabaseSettings.Password,
+		AppConfig.DatabaseSettings.Host, AppConfig.DatabaseSettings.Port, AppConfig.DatabaseSettings.DatabaseName)
+	db := database_handler.NewMySQLDB(dns)
 	return &Databases{
 		categoryRepository:  category.NewCategoryRepository(db),
 		userRepository:      user.NewUserRepository(db),

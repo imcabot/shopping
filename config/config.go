@@ -14,6 +14,8 @@ type (
 	}
 	//数据库配置
 	DatabaseSettings struct {
+		Host         string
+		Port         int
 		DatabaseURI  string
 		DatabaseName string
 		Username     string
