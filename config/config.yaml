@@ -1,7 +1,8 @@
 Env: "dev"
 
 DatabaseSettings:
-  DatabaseURI: "root:root@tcp(127.0.0.1:3306)/go_database?parseTime=true&loc=Local"
+#  DatabaseURI: "root:12312312@tcp(127.0.0.1:3306)/go_database?parseTime=true&loc=Local"
+  DatabaseURI: "root:root@tcp(mysql:3306)/go_database?parseTime=true&loc=Local"
   DatabaseName: "go_database"
   Username: "root"
   Password: "root"

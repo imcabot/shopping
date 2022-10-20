@@ -9,6 +9,7 @@ import (
 )
 
 func NewMySQLDB(conString string) *gorm.DB {
+
 	db, err := gorm.Open(mysql.Open(conString), &gorm.Config{
 		PrepareStmt: true,
 		NamingStrategy: schema.NamingStrategy{

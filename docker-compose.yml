@@ -1,0 +1,18 @@
+version: "1.0"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+
+  mysql:
+    image: mysql:latest
+    environment: MYSQL_ROOT_PASSWORD:root
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+
+#  redis:
+#    image:latest
