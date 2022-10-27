@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis/v9"
 	"log"
 	cartApi "shopping/api/cart"
 	categoryApi "shopping/api/category"
@@ -122,5 +123,24 @@ func RegisterOrderHandlers(r *gin.Engine, dbs Databases) {
 	orderGroup.POST("", orderController.CompleteOrder)
 	orderGroup.DELETE("", orderController.CancelOrder)
 	orderGroup.GET("", orderController.GetOrders)
+
+}
+
+func CreatRDBs() {
+	cfgFile := "./config/config.yaml"
+	conf, err := config.GetAllConfigValues(cfgFile)
+	AppConfig = conf
+	if err != nil {
+		log.Fatalf("读取配置文件失败。 %v", err.Error())
+	}
+	addr := fmt.Sprintf("%v:%v", conf.RedisSettings.Host, conf.RedisSettings.Port)
+	option := redis.Options{
+		// Addr:     "localhost:6379", // windows
+		Addr:     addr,
+		Username: conf.RedisSettings.Username,
+		Password: conf.RedisSettings.Password,     // no password set
+		DB:       conf.RedisSettings.DatabaseName, // use default DB
+	}
+	database_handler.NewRedisDB(&option)
 
 }

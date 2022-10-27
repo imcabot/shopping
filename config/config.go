@@ -11,6 +11,7 @@ type (
 	ConfigUration struct {
 		DatabaseSettings
 		JwtSettings
+		RedisSettings
 	}
 	//数据库配置
 	DatabaseSettings struct {
@@ -24,6 +25,15 @@ type (
 	//Jwt配置
 	JwtSettings struct {
 		SecretKey string
+	}
+	//redis配置
+	RedisSettings struct {
+		Host         string
+		Port         int
+		DatabaseURI  string
+		DatabaseName int
+		Username     string
+		Password     string
 	}
 	//reader
 	configReader struct {
